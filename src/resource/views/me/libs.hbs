@@ -1,0 +1,128 @@
+<div class="container">
+  <div class="mt-4 row">
+    <div class="items">
+      <h2 class="mt-4">BDS của tôi</h2>
+      <a href="/me/trash/products">BDS đã xóa ({{deletedCound}})</a>
+      <div class="mt-4 d-flex align-items-center">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="check-all" />
+          <label class="form-check-label" for="check-all">
+            Chọn tất cả
+          </label>
+        </div>
+        <select class="form-control form-control-sm checkbox-select " id="select">
+          <option>-- Chọn hành động --</option>
+          <option value="delete">Xóa</option>
+        </select>
+
+        <button id="excute" disabled class="btn btn-primary btn-sm ">Thực hiện</button>
+      </div>
+    </div>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Tên BDS</th>
+          <th scope="col">Mô tả</th>
+          <th scope="col">Thời gian tạo</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each products}}
+        <tr>
+          <td>
+            <div class="form-check">
+              <input name="productIds[]" class="form-check-input" type="checkbox" value="{{this._id}}" />
+          </td>
+          <th scope="row">{{sum @index 1}}</th>
+          <td>{{this.name}}</td>
+          <td>{{this.desc}}</td>
+          <td>{{this.createdAt}}</td>
+          <td>
+            <a href="/products/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+            <a href="" data-id="{{this._id}}" class="btn btn-link" data-toggle="modal"
+              data-target="#delete-product-modal">Xóa</a>
+          </td>
+        </tr>
+        {{else}}
+        <tr>
+          <td colspan="5" class="text-center">
+            Bạn chưa có BDS nào !!!
+            <a href="/products/create">Đăng BDS</a>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{! Confirm Delete }}
+<div id="delete-product-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Lưu ý</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn chắc chắn muốn xóa BDS này không?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-delete" class="btn btn-primary btn-danger" {{! onclick="delete()" }}>Xóa</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{! Delete Form }}
+<form name="delete-form" method="post"></form>
+{{! Script }}
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var checkAll = $('#check-all')
+    var checkItems = $('input[name="productIds[]"]')
+    var selectChecked = $('#select');
+    var productID; 
+    var deleteForm = document.forms['delete-form']
+    btnExcute = $('#excute')
+    $('#delete-product-modal').on('shown.bs.modal', function (event) {
+      var button = $(event.relatedTarget); 
+      productID = button.data('id');
+    }) 
+    var btnDeleteProduct = document.getElementById('btn-delete').onclick = function () {
+        deleteForm.action = '/products/' + productID + '?_method=DELETE';
+        deleteForm.submit();
+      }
+      checkAll.change(function () {
+        var isCheckedAll = $(this).prop('checked');
+       checkItems.prop('checked',isCheckedAll);
+      })
+      checkItems.change(function () {
+        var isCheckedAll = checkItems.length === $('input[name="productIds[]"]:checked').length
+        checkAll.prop('checked',isCheckedAll);
+
+      })
+      selectChecked.change(function () {
+        var selectedOption = $(this).prop('value');
+        if(selectedOption === 'delete')
+        {
+          $('#excute').prop('disabled',false);
+        }
+        else
+        {
+          $('#excute').prop('disabled',true);
+        }
+      });
+      btnExcute.click(function () {
+       deleteForm.action = '/products/' + productID + '?_method=DELETE';
+        deleteForm.submit();
+      });
+              
+  })
+
+</script>

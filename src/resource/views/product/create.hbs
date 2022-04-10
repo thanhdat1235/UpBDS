@@ -1,0 +1,140 @@
+<div class="container">
+  <div class="row">
+    <div class="mt-4 form-center">
+      <select name="select-form" id="select-form">
+        <option value="products">Đăng BDS</option>
+        <option value="news">Đăng tin tức</option>
+      </select>
+        <div id="form-products">
+        <form  method="post" action="/products/libs">
+          <div class="form-group">
+            <label for="name">Tên BDS</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="Name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="price">Giá bán</label>
+            <input
+              type="text"
+              class="form-control"
+              id="price"
+              name="price"
+              placeholder="VND"
+            />
+          </div>
+          <div class="form-group">
+            <label for="address">Địa chỉ</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              name="address"
+              placeholder="Địa chỉ"
+            />
+          </div>
+          <div class="form-group">
+            <label for="desc">Mô tả BDS</label>
+            <input
+              type="text"
+              class="form-control"
+              id="desc"
+              name="desc"
+              placeholder="Thêm mô tả"
+            />
+          </div>
+          <div class="form-group">
+            <label for="img">Hình ảnh</label>
+            <input
+              type="text"
+              class="form-control"
+              id="img"
+              name="img"
+              placeholder="Thêm hình ảnh"
+            />
+          </div>
+          <div class="form-group">
+            <label for="video_id">Video ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="video_id"
+              name="video_id"
+              placeholder="Thêm video"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+        </form>
+
+        </div>
+        <div hidden id="form-news">
+
+        <form  method="post" action="/products/libs">
+          <div class="form-group">
+            <label for="name">Tiêu đề tin tức</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="Thêm mô tả"
+            />
+          </div>
+          <div class="form-group">
+            <label for="desc">Mô tả</label>
+            <input
+              type="text"
+              class="form-control"
+              id="desc"
+              name="desc"
+              placeholder="Thêm mô tả"
+            />
+          </div>
+          <div class="form-group">
+            <label for="img">Hình ảnh</label>
+            <input
+              type="text"
+              class="form-control"
+              id="img"
+              name="img"
+              placeholder="Thêm mô tả"
+            />
+          </div>
+          <div class="form-group">
+            <label for="video_id">Video ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="video_id"
+              name="video_id"
+              placeholder="Thêm mô tả"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Thêm tin tức</button>
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+{{! Script }}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() { var selectForm =
+  $('#select-form'); selectForm.change(function() { var optionChecked =
+  $(this).prop('value'); if(optionChecked === 'news') 
+  {
+     $('#form-news').prop('hidden', false);
+        $('#form-products').prop('hidden', true);
+      }
+      else{
+         $('#form-news').prop('hidden', true);
+        $('#form-products').prop('hidden', false);
+      }
+   })
+   })
+</script>

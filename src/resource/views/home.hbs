@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Dự án mới nhất</h2>
+  <p>Dự án mới nhất này có đang ở gần bạn ?</p>
+  <div class="row mt-4">
+    {{#each products}}
+      
+      <div class="col-lg-4 col-md-6">
+        <div class="card">
+          <a href="/products/{{this.slug}}">
+            <img class="card-img-top" src="{{this.img}}" alt="{{this.name}}" />
+          </a>
+          <div class="card-body">
+            <a href="/products/{{this.slug}}">
+              <h5 class="card-title">{{this.name}}</h5>
+            </a>
+            <p>{{this.address}}</p>
+            <h5 id="icon" ><img src="https://cdn1.iconfinder.com/data/icons/finance-banking-and-currency-part-1/400/finance_10-512.png" alt="icon" >&nbsp;{{this.price}}&nbsp;VND</h5>
+            <a href="/products/{{this.slug}}" class="btn btn-primary">View More</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+  })
+</script>

@@ -1,0 +1,50 @@
+<div class="mt-4">
+  <h3>Sửa BDS</h3>
+
+  <form method="post" action="/products/{{product._id}}?_method=PUT">
+    <div class="form-group">
+      <label for="name">Tên BDS</label>
+      <input
+      value="{{product.name}}"
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        placeholder="Thêm mô tả"
+      />
+    </div>
+    <div class="form-group">
+      <label for="desc">Mô tả BDS</label>
+      <textarea
+        class="form-control"
+        id="desc"
+        name="desc"
+        placeholder="Thêm mô tả"
+      >{{product.desc}}</textarea>
+    </div>
+    <div class="form-group">
+      <label for="img">Hình ảnh</label>
+      <input
+      value="{{product.img}}"
+        type="text"
+        class="form-control"
+        id="img"
+        name="img"
+        placeholder="Thêm mô tả"
+      />
+    </div>
+    <div class="form-group">
+      <label for="video_id">Video ID</label>
+      <input
+      value="{{product.video_id}}"
+        type="text"
+        class="form-control"
+        id="video_id"
+        name="video_id"
+        placeholder="Thêm mô tả"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu lại</button>
+  </form>
+
+</div>

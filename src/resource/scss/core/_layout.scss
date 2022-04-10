@@ -1,0 +1,114 @@
+h1 {
+    color: blue;
+}
+
+html {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .img-slide {
+        width: 100%;
+    }
+    .filter-homes {
+        flex-flow: column;
+        align-items: center;
+        display: flex;
+        h1 {
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .input-search {
+            width: 100%;
+            .input {
+                margin-top: 30px;
+                height: 40px;
+                color: #fff;
+                display: grid;
+                grid-template-columns: (repeat(4, 1fr));
+                background-color: #f2653b;
+                .title {
+                    font-size: 20px;
+                    display: flex;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                    select {
+                        background-color: #f2653b;
+                        border: none;
+                    }
+                }
+                input {
+                    grid-column-start: 2;
+                    grid-column-end: 5;
+                    width: 100%;
+                }
+            }
+        }
+        .address {
+            margin-top: 10px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: (repeat(4, 1fr));
+            .select {
+                .city {
+                    height: 40px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                }
+            }
+        }
+        .btn {
+            background-color: #68ad31;
+            margin-top: 10px;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            width: 20%;
+            height: 40px;
+            a {
+                text-decoration: none;
+                color: #fff;
+                font-size: 20px;
+                font-weight: bold;
+            }
+        }
+        .search-of-style {
+            width: 100%;
+            h5 {
+                text-align: center;
+                margin: 20px 0;
+                color: #fff;
+            }
+            .image-style-text {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                margin-top: 50px;
+                .image-text {
+                    display: flex;
+                    flex-flow: column;
+                    align-items: center;
+                    justify-content: center;
+                    img {
+                        width: 90px;
+                        height: 64px;
+                    }
+                    p {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.filter-homes {
+    position: absolute;
+}
